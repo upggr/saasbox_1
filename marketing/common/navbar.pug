@@ -2,13 +2,14 @@ mixin navbar()
     section
         nav.relative.px-6.py-6.flex.justify-between.items-center.bg-gray-50
           a.text-white.text-3xl.font-bold.leading-none(href='/')
-            img.h-12(src=asset('atis-assets/logo/atis/atis-mono-white.svg') alt width='auto')
-          .lg_hidden
-            button.navbar-burger.flex.items-center.text-gray-400.p-3
-              svg.block.h-4.w-4.fill-current(viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg')
-                title Mobile menu
-                path(d='M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z')
-          ul.hidden.absolute.top-1_2.left-1_2.transform.-translate-y-1_2.-translate-x-1_2.lg_flex.lg_mx-auto.lg_flex.lg_items-center.lg_w-auto.lg_space-x-6
+            img.h-12(src=thisApp.ImageUrl, alt width='auto')
+          if !currentUser
+            .lg_hidden
+              button.navbar-burger.flex.items-center.text-gray-400.p-3
+                svg.block.h-4.w-4.fill-current(viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg')
+                  title Mobile menu
+                  path(d='M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z')
+          ul.hidden.top-1_2.left-1_2.transform.-translate-y-1_2.-translate-x-1_2.lg_flex.lg_mx-auto.lg_flex.lg_items-center.lg_w-auto.lg_space-x-6
             li
               a.text-sm.text-gray-400.hover_text-gray-500(href='/pricing') Start
             li.text-gray-800
