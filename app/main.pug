@@ -4,8 +4,13 @@ block head
   +head(title)
 
 block page_content
-  p.text-lg Welcome to your User Dashboard
-  p.text-md Your application goes in here.
+    p.text-lg Welcome to your User Dashboard
+    .pt-5
+      p.text-md Your application goes in here. Check out our guides on 
+        a(href="https://docs.saasbox.net").text-blue-600.hover_text-blue-800.visited_text-purple-600
+          | how to embed a no code application.
+      .pt-5
+        p.text-md The one time code (otc) that defines this user to your embed: 
+         span.font-semibold
+           | #{otc}
 block footer
-  script(src='https://cdn.jsdelivr.net/npm/apexcharts')
-  script(src=asset('app/js/charts-demo.js'))
