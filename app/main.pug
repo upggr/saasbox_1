@@ -8,7 +8,7 @@ html(lang='en')
         nav.lg_hidden.py-6.px-6.border-b
           .flex.items-center.justify-between
             a.text-2xl.font-semibold(href='#')
-              img.h-10(thisApp.ImageUrl, alt width='auto')
+              img.h-10(src=thisApp.ImageUrl, alt width='auto')
             button.navbar-burger.flex.items-center.rounded.focus_outline-none
               svg.text-white.bg-indigo-500.hover_bg-indigo-600.block.h-8.w-8.p-2.rounded(viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg' fill='currentColor')
                 title Mobile menu
@@ -17,8 +17,12 @@ html(lang='en')
           .navbar-backdrop.fixed.lg_hidden.inset-0.bg-gray-800.opacity-10
           nav.fixed.top-0.left-0.bottom-0.flex.flex-col.w-3_4.lg_w-80.sm_max-w-xs.pt-6.pb-8.bg-white.border-r.overflow-y-auto
             .flex.w-full.items-center.px-6.pb-6.mb-6.lg_border-b.border-blue-50
-              a.text-xl.font-semibold(href='#')
-                img.h-8(src=thisApp.ImageUrl, alt width='auto')
+              if (thisApp.name)
+                p.text-xl.font-semibold
+                  | #{thisApp.name}
+              else
+                a.text-xl.font-semibold(href='#')
+                  img.h-8(src=thisApp.ImageUrl, alt width='auto')
             .px-4.pb-6
               h3.mb-2.text-xs.uppercase.text-gray-200.font-medium Main
               ul.mb-8.text-sm.font-medium
@@ -151,7 +155,7 @@ html(lang='en')
                   div
                     button.max-w-xs.flex.items-center.text-sm.rounded-full.focus_outline-none.border.border-gray-200.focus_ring#user-menu(@click='open = !open', aria-label='User menu', aria-haspopup='true', x-bind_aria-expanded='open')
                       //- Case of empty thumbnail
-                      include user-thumb.pug
+                      include common/user-thumb.pug
                       +user_thumb_img(currentUser)
                       //-  if (currentUser.ImageUrl == undefined)
                           svg.h-8.w-8.text-gray-300.rounded-full(fill='currentColor' viewBox='0 0 24 24')
