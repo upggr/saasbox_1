@@ -1,35 +1,35 @@
 mixin footer_simple()
-  section.bg-gray-900
+  section.bg-gray-50
     .flex.w-full
       .w-1_3.flex
-        .w-1_3.py-1.bg-green-400
-        .w-1_3.py-1.bg-green-500
-        .w-1_3.py-1.bg-green-600
+        .w-1_3.py-1.bg-purple-400
+        .w-1_3.py-1.bg-purple-500
+        .w-1_3.py-1.bg-purple-600
       .w-1_3.flex
-        .w-1_3.py-1.bg-green-400
-        .w-1_3.py-1.bg-green-500
-        .w-1_3.py-1.bg-green-600
+        .w-1_3.py-1.bg-purple-400
+        .w-1_3.py-1.bg-purple-500
+        .w-1_3.py-1.bg-purple-600
       .w-1_3.flex
-        .w-1_3.py-1.bg-green-400
-        .w-1_3.py-1.bg-green-500
-        .w-1_3.py-1.bg-green-600
+        .w-1_3.py-1.bg-purple-400
+        .w-1_3.py-1.bg-purple-500
+        .w-1_3.py-1.bg-purple-600
     .container.mx-auto.px-4
       .pt-10.pb-12
         .relative.lg_pb-8.mb-8.flex.flex-wrap.lg_border-b.lg_border-gray-800
           p.w-full.lg_w-auto.text-gray-400.text-sm.text-center.lg_text-left.order-last.lg_order-first © #{new Date().getFullYear()} #{thisApp.name}. All rights reserved.
           .lg_absolute.lg_left-1_2.lg_transform.lg_-translate-x-1_2.mb-6.lg_mb-0.mx-auto
-            a.mr-6.text-sm.hover_text-gray-500(href='#') Terms of Service
-            a.text-sm.hover_text-gray-500(href='#') Police Privacy
+            a.mr-6.text-sm.text-gray-400.hover_text-gray-500(href='#') Terms of Service
+            a.text-sm.text-gray-400.hover_text-gray-500(href='#') Police Privacy
           .mb-12.lg_mb-0.lg_ml-auto.w-full.lg_w-auto.order-first.lg_order-last.text-center.lg_text-left
             a.inline-block.text-white.text-xl.font-bold.leading-none(href='#')
-              img.inline-block.h-12.lg_h-6(src=asset('atis-assets/logo/atis/atis-mono-white.svg') alt width='auto')
+              img.inline-block.h-12.lg_h-6(src=asset('marketing/atis-assets/logo/atis/atis-mono-white.svg') alt width='auto')
         .flex.justify-center
           a.inline-block.w-10.mr-2.p-2.bg-gray-800.hover_bg-gray-700.rounded(href='#')
-            img.mx-auto(src=asset('atis-assets/social/facebook.svg'))
+            img.mx-auto(src=asset('marketing/atis-assets/social/facebook.svg'))
           a.inline-block.w-10.mr-2.p-2.bg-gray-800.hover_bg-gray-700.rounded(href='#')
-            img.mx-auto(src=asset('atis-assets/social/twitter.svg'))
+            img.mx-auto(src=asset('marketing/atis-assets/social/twitter.svg'))
           a.inline-block.w-10.p-2.bg-gray-800.hover_bg-gray-700.rounded(href='#')
-            img.mx-auto(src=asset('atis-assets/social/instagram.svg'))
+            img.mx-auto(src=asset('marketing/atis-assets/social/instagram.svg'))
   script(src="https://js.stripe.com/v3/")
   if (fbtracker && fbtracker.is_ga_enabled)
     script(src=asset("/javascripts/ganalytics.js"))
