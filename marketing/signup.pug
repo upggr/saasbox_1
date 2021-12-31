@@ -1,0 +1,66 @@
+doctype html
+html(lang='en')
+  include common/head.pug
+  +head(title)
+  body.antialiased.bg-body.text-body.font-body
+    div
+      include common/navbar.pug
+      +navbar()
+      section.min-h-screen.py-10.bg-gray-50
+        .container.mx-auto.px-4
+          .max-w-xl.mx-auto
+            .mb-10
+              a.text-3xl.font-bold.leading-none(href='#')
+                img.h-12.mx-auto(src=thisApp.ImageUrl) alt width='auto')
+            .p-6.lg_p-12.mb-6.bg-white.shadow.rounded
+              .mb-6
+                span.text-gray-500 Sign Up
+                h3.text-2xl.font-bold Create an account
+              form(action="/signup", method="POST")
+                .flex.flex-wrap.-mx-2
+                  .mb-3.w-full.lg_w-1_2.px-2
+                    input.w-full.p-4.text-xs.bg-gray-50.outline-none.rounded(type='text', name="firstname", placeholder='First Name' autocomplete='off' style='background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAkCAYAAADo6zjiAAAAAXNSR0IArs4c6QAAAnVJREFUWAntVzuL4lAUPokBsVB0t9odK8VCLCal3Q4WbmUpCFv6DyymEmys9gf4B4RlS7GwEWQsBAsL195q2J3KWIiVrz0nJBcTk9yr3jCw7AG5j3PO9325j2OiAFq73X7Y7/ffsft0Op0+05wsUxTlD2K9aJr23Gw2f7txFYv8FxJ/dDtljlHICkU8ukWo9ORhk9ODEIe1yo7nUnH05JgJd3DBpcre8yD9Xly0Au9q/7aAfD4PjUYDqPWzUFegUChAIpEAav0sVAF4901eu/USEaoAL0L3nENANBqFbDYLqVTKHQe3+i6AXBOaPU4mk1Cv1yEej8PxeIR+vw/z+dx03+qzsYNatgLFYtEkp2BVVaFUKrG8W30MIKDDBATEhOpiAqbTKWw2G5OMtmA0GjHiW30MIKCjtFqtk+2ng5ZOp8EwDFiv1/a02Qb5HIGcAV7JNwwZW+8Hrw4BnFypbhRioAidbYFUdAEw/Gf8QO8H7ybA0viF1QEB0cIhmUwGqtUqxGIxM2cymcBwOLzIx1X4JF0A1YxyuWzWkgtGjwlpAiKRCFQqFdB13YPGf0qagFqtBrlczmSiOkJGFZVnKl4Hem+/26hYEfHhcIBerwe73U4IkyS+CEVygpbLJQwGA+h2u7BYLIC2RMSwFmjPeB+/4om8+8NkNpsxzqCXEBaEHZW+VFDEIyb8kLUd5wS8vnkIrc+lb7xg8p//d4jE82L4x5SHcKf/v4CrCxEe1Deq4byVX61WrBBtt1vPcMK6WgAijfFX80Q8m+x0Omcj3+746jNAdQOVG76Qgg7CIKyrBeCVfcVEHQF+0hIK8rEwyqFcwiCsv+R847qxq2vXAAAAAElFTkSuQmCC"); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%;')
+                  .mb-3.w-full.lg_w-1_2.px-2
+                    input.w-full.p-4.text-xs.bg-gray-50.outline-none.rounded(type='text' name="lastname", placeholder='Last Name')
+                .mb-3.flex.p-4.bg-gray-50.rounded
+                  input.w-full.text-xs.bg-gray-50.outline-none(type='email', name="email", placeholder='name@email.com')
+                  svg.h-6.w-6.ml-4.my-auto.text-gray-300(xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor')
+                    path(stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207')
+                .mb-6.flex.p-4.bg-gray-50.rounded
+                  input.w-full.text-xs.bg-gray-50.outline-none(type='password' placeholder='Enter your password' autocomplete='off' style='background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAkCAYAAADo6zjiAAAAAXNSR0IArs4c6QAAAnVJREFUWAntVzuL4lAUPokBsVB0t9odK8VCLCal3Q4WbmUpCFv6DyymEmys9gf4B4RlS7GwEWQsBAsL195q2J3KWIiVrz0nJBcTk9yr3jCw7AG5j3PO9325j2OiAFq73X7Y7/ffsft0Op0+05wsUxTlD2K9aJr23Gw2f7txFYv8FxJ/dDtljlHICkU8ukWo9ORhk9ODEIe1yo7nUnH05JgJd3DBpcre8yD9Xly0Au9q/7aAfD4PjUYDqPWzUFegUChAIpEAav0sVAF4901eu/USEaoAL0L3nENANBqFbDYLqVTKHQe3+i6AXBOaPU4mk1Cv1yEej8PxeIR+vw/z+dx03+qzsYNatgLFYtEkp2BVVaFUKrG8W30MIKDDBATEhOpiAqbTKWw2G5OMtmA0GjHiW30MIKCjtFqtk+2ng5ZOp8EwDFiv1/a02Qb5HIGcAV7JNwwZW+8Hrw4BnFypbhRioAidbYFUdAEw/Gf8QO8H7ybA0viF1QEB0cIhmUwGqtUqxGIxM2cymcBwOLzIx1X4JF0A1YxyuWzWkgtGjwlpAiKRCFQqFdB13YPGf0qagFqtBrlczmSiOkJGFZVnKl4Hem+/26hYEfHhcIBerwe73U4IkyS+CEVygpbLJQwGA+h2u7BYLIC2RMSwFmjPeB+/4om8+8NkNpsxzqCXEBaEHZW+VFDEIyb8kLUd5wS8vnkIrc+lb7xg8p//d4jE82L4x5SHcKf/v4CrCxEe1Deq4byVX61WrBBtt1vPcMK6WgAijfFX80Q8m+x0Omcj3+746jNAdQOVG76Qgg7CIKyrBeCVfcVEHQF+0hIK8rEwyqFcwiCsv+R847qxq2vXAAAAAElFTkSuQmCC"); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%;')
+                  button
+                    svg.h-6.w-6.ml-4.my-auto.text-gray-300(xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor')
+                      path(stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M15 12a3 3 0 11-6 0 3 3 0 016 0z')
+                      path(stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z')
+                .text-xs.text-center.text-gray-400
+                  input(type="checkbox", name="terms_agreed" checked="checked")
+                  span
+                    | I agree to the 
+                    a.underline.hover_text-gray-500(href='#')
+                      | Privacy policy
+                    | and 
+                    a.underline.hover_text-gray-500(href='#')
+                      | Terms of Use
+                .text-center
+                  button(type="submit").mb-2.w-full.py-4.bg-pink-600.hover_bg-pink-700.rounded.text-sm.font-bold.text-gray-50.transition.duration-200 Sign Up
+                  span.text-gray-400.text-xs
+                    span Already have an account? 
+                    a.text-purple-600.hover_underline(href='/login') Sign In
+                  if (facebook_callback)
+                    a.mt-8.mb-4.p-4.flex.justify-center.items-center.border.rounded.hover_bg-gray-50(href='#')
+                      img.mr-4(src=asset('marketing/atis-assets/social/facebook-logo.png') alt)
+                      span.text-xs.text-gray-500.font-bold.transition.duration-200 Sign In with Facebook
+                  if (google_callback)
+                    a.p-4.flex.justify-center.items-center.border.rounded.hover_bg-gray-50(href='#')
+                      img.mr-4(src=asset('marketing/atis-assets/social/google-logo.png') alt)
+                      span.text-xs.text-gray-500.font-bold.transition.duration-200 Sign In with Google
+                  if (twitter_callback)
+                    a.p-4.flex.justify-center.items-center.border.rounded.hover_bg-gray-50(href='#')
+                      img.mr-4(src=asset('marketing/atis-assets/social/twitter-logo.png') alt)
+                      span.text-xs.text-gray-500.font-bold.transition.duration-200 Sign In with Twitter
+            p.text-xs.text-center.text-gray-400
+              a.underline.hover_text-gray-500(href='#') Policy privacy
+              |  and 
+              a.underline.hover_text-gray-500(href='#') Terms of Use
+      include common/footer-simple.pug
+      +footer_simple()

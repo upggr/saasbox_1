@@ -1,0 +1,5 @@
+{
+    "description": "A simple, high quality theme built using shuffle.dev that incorporates marketing pages, user sign up pages, a SaaS dashboard / user portal area.",
+    "assets": "assets",
+    "ignore": [".git", ".config.json", "tailwind.config.js", "README.md", "README.txt", "LICENSE", ".gitignore", ".DS_Store"]
+}

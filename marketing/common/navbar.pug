@@ -1,0 +1,99 @@
+mixin navbar()
+    section
+        nav.relative.px-6.py-6.flex.justify-between.items-center.bg-gray-900
+          a.text-white.text-3xl.font-bold.leading-none(href='/')
+            img.h-12(src=asset('atis-assets/logo/atis/atis-mono-white.svg') alt width='auto')
+          .lg_hidden
+            button.navbar-burger.flex.items-center.text-white.p-3
+              svg.block.h-4.w-4.fill-current(viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg')
+                title Mobile menu
+                path(d='M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z')
+          ul.hidden.absolute.top-1_2.left-1_2.transform.-translate-y-1_2.-translate-x-1_2.lg_flex.lg_mx-auto.lg_flex.lg_items-center.lg_w-auto.lg_space-x-6
+            li
+              a.text-sm.text-gray-300.hover_text-white(href='/pricing') Start
+            li.text-gray-800
+              svg.w-4.h-4.current-fill(xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor')
+                path(stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z')
+            li
+              a.text-sm.text-white.font-bold(href='#') About Us
+            li.text-gray-800
+              svg.w-4.h-4.current-fill(xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor')
+                path(stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z')
+            li
+              a.text-sm.text-gray-300.hover_text-white(href='/features') Features
+            li.text-gray-800
+              svg.w-4.h-4.current-fill(xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor')
+                path(stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z')
+            li
+              a.text-sm.text-gray-300.hover_text-white(href='/pricing') Pricing
+            li.text-gray-800
+              svg.w-4.h-4.current-fill(xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor')
+                path(stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z')
+            li
+              a.text-sm.text-gray-300.hover_text-white(href='/blog') Blog
+          if !currentUser
+            a.hidden.lg_inline-block.lg_ml-auto.lg_mr-3.py-2.px-6.text-sm.text-white.font-bold.border-2.border-gray-800.hover_border-gray-700.rounded-l-xl.rounded-t-xl.transition.duration-200(href='/login') Sign In
+            a.hidden.lg_inline-block.py-2.px-6.bg-green-500.hover_bg-green-600.text-sm.text-white.font-bold.rounded-l-xl.rounded-t-xl.transition.duration-200(href='/signup') Sign up
+          else
+            .ml-3.relative(@click.away='open = false', x-data='{ open: false }')
+              div
+                button.max-w-xs.flex.items-center.text-sm.rounded-full.focus_outline-none.focus_ring#user-menu(@click='open = !open', aria-label='User menu', aria-haspopup='true', x-bind_aria-expanded='open')
+                  include user-thumb.pug
+                  +user_thumb_img(currentUser)
+                  //-img.h-8.w-8.rounded-full(src='https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80', alt='')
+              .origin-top-right.absolute.right-0.mt-2.w-48.shadow-lg(x-show='open', x-description='Profile dropdown panel, show/hide based on dropdown state.', x-transition_enter='transition ease-out duration-100', x-transition_enter-start='transform opacity-0 scale-95', x-transition_enter-end='transform opacity-100 scale-100', x-transition_leave='transition ease-in duration-75', x-transition_leave-start='transform opacity-100 scale-100', x-transition_leave-end='transform opacity-0 scale-95', style='display: none;')
+                .py-1.rounded.bg-white.ring1.ring-black.ring-opacity-5(role='menu', aria-orientation='vertical', aria-labelledby='user-menu')
+                  a.block.px-4.py-2.font-medium.text-gray-500.hover_bg-gray-100.transition.ease-in-out.duration-150(href=(currentUser.appUser.is_admin ? '/dashboard/profile' : '/app/user/profile'), role='menuitem') Your Profile
+                  if currentUser.appUser.is_admin
+                    a.block.px-4.py-2.font-medium.text-gray-500.hover_bg-gray-100.transition.ease-in-out.duration-150(href='/dashboard', role='menuitem') Admin Dashboard
+                    a.block.px-4.py-2.font-medium.text-gray-500.hover_bg-gray-100.transition.ease-in-out.duration-150(href='/app/start', role='menuitem') App Dashboard
+                  a.block.px-4.py-2.font-medium.text-gray-500.hover_bg-gray-100.transition.ease-in-out.duration-150(href='/logout', role='menuitem') Sign out
+        .hidden.navbar-menu.relative.z-50
+          .navbar-backdrop.fixed.inset-0.bg-gray-800.opacity-25
+          nav.fixed.top-0.left-0.bottom-0.flex.flex-col.w-5_6.max-w-sm.py-6.px-6.bg-white.border-r.overflow-y-auto
+            .flex.items-center.mb-8
+              a.mr-auto.text-3xl.font-bold.leading-none(href='#')
+                img.h-10(src=asset('atis-assets/logo/atis/atis-mono-black.svg') alt width='auto')
+              button.navbar-close
+                svg.h-6.w-6.text-gray-400.cursor-pointer.hover_text-gray-500(xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor')
+                  path(stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M6 18L18 6M6 6l12 12')
+            div
+              ul
+                li.mb-1
+                  a.block.p-4.text-sm.font-semibold.text-gray-400.hover_bg-green-50.hover_text-green-600.rounded(href='/pricing') Start
+                li.mb-1
+                  a.block.p-4.text-sm.font-semibold.text-gray-400.hover_bg-green-50.hover_text-green-600.rounded(href='/about-us') About Us
+                li.mb-1
+                  a.block.p-4.text-sm.font-semibold.text-gray-400.hover_bg-green-50.hover_text-green-600.rounded(href='/features') Features
+                li.mb-1
+                  a.block.p-4.text-sm.font-semibold.text-gray-400.hover_bg-green-50.hover_text-green-600.rounded(href='/pricing') Pricing
+                li.mb-1
+                  a.block.p-4.text-sm.font-semibold.text-gray-400.hover_bg-green-50.hover_text-green-600.rounded(href='/blog') Blog
+            .mt-auto
+              if !currentUser
+                .pt-6
+                  a.block.px-4.py-3.mb-3.leading-loose.text-xs.text-center.font-semibold.leading-none.bg-gray-50.hover_bg-gray-100.rounded-l-xl.rounded-t-xl(href='/login') Sign in
+                  a.block.px-4.py-3.mb-2.leading-loose.text-xs.text-center.text-white.font-semibold.bg-green-600.hover_bg-green-700.rounded-l-xl.rounded-t-xl(href='/signup') Sign Up
+              else
+                .ml-3.relative(@click.away='open = false', x-data='{ open: false }')
+                  div
+                    button.max-w-xs.flex.items-center.text-sm.rounded-full.focus_outline-none.focus_ring#user-menu(@click='open = !open', aria-label='User menu', aria-haspopup='true', x-bind_aria-expanded='open')
+                      include user-thumb.pug
+                      +user_thumb_img(currentUser)
+                      //-img.h-8.w-8.rounded-full(src='https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80', alt='')
+                  .origin-top-right.absolute.right-0.mt-2.w-48.rounded-md.shadow-lg(x-show='open', x-description='Profile dropdown panel, show/hide based on dropdown state.', x-transition_enter='transition ease-out duration-100', x-transition_enter-start='transform opacity-0 scale-95', x-transition_enter-end='transform opacity-100 scale-100', x-transition_leave='transition ease-in duration-75', x-transition_leave-start='transform opacity-100 scale-100', x-transition_leave-end='transform opacity-0 scale-95', style='display: none;')
+                    .py-1.rounded-md.bg-white.ring1.ring-black.ring-opacity-5(role='menu', aria-orientation='vertical', aria-labelledby='user-menu')
+                      a.block.px-4.py-2.font-medium.text-gray-500.hover_bg-gray-100.transition.ease-in-out.duration-150(href=(currentUser.appUser.is_admin ? '/dashboard/profile' : '/app/user/profile'), role='menuitem') Your Profile
+                      if currentUser.appUser.is_admin
+                        a.block.px-4.py-2.font-medium.text-gray-500.hover_bg-gray-100.transition.ease-in-out.duration-150(href='/dashboard', role='menuitem') Admin Dashboard
+                        a.block.px-4.py-2.font-medium.text-gray-500.hover_bg-gray-100.transition.ease-in-out.duration-150(href='/app/start', role='menuitem') App Dashboard
+                      a.block.px-4.py-2.font-medium.text-gray-500.hover_bg-gray-100.transition.ease-in-out.duration-150(href='/logout', role='menuitem') Sign out
+              p.my-4.text-xs.text-center.text-gray-400
+                span © 2020 All rights reserved.
+              .text-center
+                a.inline-block.px-1(href='#')
+                  img(src=asset('atis-assets/social/facebook.svg') alt)
+                a.inline-block.px-1(href='#')
+                  img(src=asset('atis-assets/social/twitter.svg') alt)
+                a.inline-block.px-1(href='#')
+                  img(src=asset('atis-assets/social/instagram.svg') alt)

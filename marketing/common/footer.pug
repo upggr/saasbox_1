@@ -1,0 +1,72 @@
+mixin footer()
+  section
+    .skew.skew-top.mr-for-radius
+      svg.h-8.md_h-12.lg_h-20.w-full.text-gray-50(viewBox='0 0 10 10' preserveAspectRatio='none')
+        polygon(fill='currentColor' points='0 0 10 10 0 10')
+    .skew.skew-top.ml-for-radius
+      svg.h-8.md_h-12.lg_h-20.w-full.text-gray-50(viewBox='0 0 10 10' preserveAspectRatio='none')
+        polygon(fill='currentColor' points='0 10 10 0 10 10')
+    .py-20.bg-gray-50.radius-for-skewed
+      .container.mx-auto.px-4
+        .flex.flex-wrap
+          .w-full.lg_w-1_3.mb-16.lg_mb-0
+            a.inline-block.mb-3.text-3xl.font-bold.leading-none(href='#')
+              img.mb-3.h-12(src=thisApp.ImageUrl, alt width='auto')
+            p.mb-4.max-w-sm.text-gray-400.leading-loose #{thisApp.about}
+            div
+              a.inline-block.w-10.mr-2.p-2.bg-gray-50.hover_bg-gray-100.rounded(href='#')
+                img.mx-auto(src=asset('atis-assets/social/facebook-purple.svg'))
+              a.inline-block.w-10.mr-2.p-2.bg-gray-50.hover_bg-gray-100.rounded(href='#')
+                img.mx-auto(src=asset('atis-assets/social/twitter-purple.svg'))
+              a.inline-block.w-10.p-2.bg-gray-50.hover_bg-gray-100.rounded(href='#')
+                img.mx-auto(src=asset('atis-assets/social/instagram-purple.svg'))
+          .w-full.lg_w-2_3.lg_pl-16.flex.flex-wrap.justify-between
+            .w-full.md_w-1_3.lg_w-auto.mb-16.md_mb-0
+              h3.mb-6.text-2xl.font-bold.text-purple-600 Products
+              ul
+                li.mb-4
+                  a.text-gray-800.hover_text-gray-600(href='#') Services
+                li.mb-4
+                  a.text-gray-800.hover_text-gray-600(href='#') About Us
+                li.mb-4
+                  a.text-gray-800.hover_text-gray-600(href='#') News and Stories
+                li
+                  a.text-gray-800.hover_text-gray-600(href='#') Roadmap
+            .w-full.md_w-1_3.lg_w-auto.mb-16.md_mb-0
+              h3.mb-6.text-2xl.font-bold.text-purple-600 Important Links
+              ul
+                li.mb-4
+                  a.text-gray-800.hover_text-gray-600(href='#') Organization Team
+                li.mb-4
+                  a.text-gray-800.hover_text-gray-600(href='#') Our Journeys
+                li.mb-4
+                  a.text-gray-800.hover_text-gray-600(href='#') Pricing Plans
+                li.mb-4
+                  a.text-gray-800.hover_text-gray-600(href='#') Roadmap
+                li.mb-4
+                  a.text-gray-800.hover_text-gray-600(href='#') Terms & Conditions
+                li
+                  a.text-gray-800.hover_text-gray-600(href='#') Privacy Policy
+            .w-full.md_w-1_3.lg_w-auto
+              h3.mb-6.text-2xl.font-bold.text-purple-600 Company
+              ul
+                li.mb-4
+                  a.text-gray-800.hover_text-gray-600(href='#') About Us
+                li.mb-4
+                  a.text-gray-800.hover_text-gray-600(href='#') Jobs
+                li.mb-4
+                  a.text-gray-800.hover_text-gray-600(href='#') Press
+                li
+                  a.text-gray-800.hover_text-gray-600(href='#') Contact Us
+        p.lg_text-center.text-sm.text-gray-400.border-t.border-gray-100.pt-12.mt-16 © #{new Date().getFullYear()} #{thisApp.name}. All rights reserved.
+    .skew.skew-bottom.mr-for-radius
+      svg.h-8.md_h-12.lg_h-20.w-full.text-gray-50(viewBox='0 0 10 10' preserveAspectRatio='none')
+        polygon(fill='currentColor' points='0 0 10 0 0 10')
+    .skew.skew-bottom.ml-for-radius
+      svg.h-8.md_h-12.lg_h-20.w-full.text-gray-50(viewBox='0 0 10 10' preserveAspectRatio='none')
+        polygon(fill='currentColor' points='0 0 10 0 10 10')
+  script(src="https://js.stripe.com/v3/")
+  if (fbtracker && fbtracker.is_ga_enabled)
+    script(src=asset("/javascripts/ganalytics.js"))
+  if fbtracker && fbtracker.tracking == "on" && fbtracker.trackid
+    script(src=asset('/javascripts/fb-tracker.js'))

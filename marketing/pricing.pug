@@ -1,0 +1,171 @@
+doctype html
+html(lang='en')
+  include common/head.pug
+  +head(title)
+  body.antialiased.bg-body.text-body.font-body
+    div
+      include common/navbar.pug
+      +navbar()
+      section
+        .skew.skew-top.mr-for-radius
+          svg.h-8.md_h-12.lg_h-20.w-full.text-gray-50(viewBox='0 0 10 10' preserveAspectRatio='none')
+            polygon(fill='currentColor' points='0 0 10 10 0 10')
+        .skew.skew-top.ml-for-radius
+          svg.h-8.md_h-12.lg_h-20.w-full.text-gray-50(viewBox='0 0 10 10' preserveAspectRatio='none')
+            polygon(fill='currentColor' points='0 10 10 0 10 10')
+        .py-20.bg-gray-50.radius-for-skewed
+          .container.mx-auto.px-4
+            .max-w-2xl.mx-auto.text-center.mb-16
+              span.text-purple-600.font-bold [Strong Value Proposition]
+              h2.mb-2.text-4xl.lg_text-5xl.font-bold.font-heading Pricing Plans
+              p.mb-6.text-gray-500 Try Risk Free for 30 Days with a money back guarantee. Upgrade when you need.
+              div(id="pricing-tabs").inline-block.py-1.px-1.bg-white.rounded-lg
+                a(href="/pricing").mr-1.text-sm.py-2.px-4.text-gray-500.hover_text-gray-900.font-bold Monthly
+                a(href="/pricing-yearly").text-sm.py-2.px-4.text-gray-900.bg-gray-50.rounded-lg.shadow.font-bold Yearly
+            form(action="/pick-plan", method="POST")
+              .flex.flex-wrap.-mx-4
+                //- We want to highlight plan at index 1.
+                - let highlight_index = 1
+                if plans.length > 0
+                  for plan in plans
+                    if plan != plans[highlight_index]
+                      .w-full.md_w-1_2.lg_w-1_3.px-4.mb-8.lg_mb-0
+                        .p-8.bg-white.shadow.rounded
+                          h4.mb-2.text-2xl.font-bold.font-heading #{plan.name}
+                          if plan.is_free
+                            span.text-6xl.font-bold Free
+                          else
+                            span.text-6xl.font-bold $#{plan.price_per_period}
+                            - let period = plan.billing_period.slice(0,-2)
+                            span.text-xs /#{period}
+                          p.mt-3.mb-6.text-gray-500.leading-loose #{plan.description}
+                          ul.mb-6.text-gray-500
+                            - for (let i = 0; i < 10; i++)
+                              if (plan.features.text[i])
+                                li.mb-2.flex
+                                  svg.mr-2.w-5.h-5.text-green-600(xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='currentColor')
+                                    path(fill-rule='evenodd' d='M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z' clip-rule='evenodd')
+                                  span #{plan.features.text[i]}                      
+                          if (currentUser && currentUser.appUser.PlanId == plan.id)
+                            button(name="planId", value=plan.id, data-track-name=plan.name, data-track-price=plan.price_per_period, data-track-period=plan.billing_period, disabled).inline-block.text-center.py-2.px-4.w-full.rounded-l-xl.rounded-t-xl.bg-pink-600.hover_bg-pink-700.text-white.font-bold.leading-loose.transition.duration-200 Current Plan
+                          else if (currentUser && currentUser.appUser.PlanId)
+                            button(name="planId", value=plan.id, data-track-name=plan.name, data-track-price=plan.price_per_period, data-track-period=plan.billing_period).inline-block.text-center.py-2.px-4.w-full.rounded-l-xl.rounded-t-xl.bg-pink-600.hover_bg-pink-700.text-white.font-bold.leading-loose.transition.duration-200 Switch to this plan
+                          else
+                            button(name="planId", value=plan.id, data-track-name=plan.name, data-track-price=plan.price_per_period, data-track-period=plan.billing_period).inline-block.text-center.py-2.px-4.w-full.rounded-l-xl.rounded-t-xl.bg-pink-600.hover_bg-pink-700.text-white.font-bold.leading-loose.transition.duration-200 #{plan.cta}
+                    else if plan == plans[highlight_index]
+                      .w-full.md_w-1_2.lg_w-1_3.px-4.mb-8.lg_mb-0
+                        .p-8.bg-purple-600.shadow.rounded
+                          h4.mb-2.text-2xl.font-bold.text-white #{plan.name}
+                          if plan.is_free
+                            span.text-6xl.font-bold.text-white Free
+                          else
+                            span.text-6xl.font-bold.text-white $#{plan.price_per_period}
+                            - let period = plan.billing_period.slice(0,-2)
+                            span.text-gray-50.text-xs /#{period}
+                          p.mt-3.mb-6.leading-loose.text-gray-50 #{plan.description}
+                          ul.mb-6.text-gray-50
+                            - for (let i = 0; i < 10; i++)
+                              if (plan.features.text[i])
+                                li.mb-2.flex
+                                  svg.mr-2.w-5.h-5.text-purple-400(xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='currentColor')
+                                    path(fill-rule='evenodd' d='M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z' clip-rule='evenodd')
+                                  span #{plan.features.text[i]}
+                          if (currentUser && currentUser.appUser.PlanId == plan.id)
+                            button(name="planId", value=plan.id, data-track-name=plan.name, data-track-price=plan.price_per_period, data-track-period=plan.billing_period, disabled).inline-block.text-center.py-2.px-4.w-full.rounded-l-xl.rounded-t-xl.bg-white.hover_bg-gray-100.font-bold.leading-loose.transition.duration-200 Current Plan
+                          else if (currentUser && currentUser.appUser.PlanId)
+                            button(name="planId", value=plan.id, data-track-name=plan.name, data-track-price=plan.price_per_period, data-track-period=plan.billing_period).inline-block.text-center.py-2.px-4.w-full.rounded-l-xl.rounded-t-xl.bg-white.hover_bg-gray-100.font-bold.leading-loose.transition.duration-200 Switch to this plan
+                          else
+                            button(name="planId", value=plan.id, data-track-name=plan.name, data-track-price=plan.price_per_period, data-track-period=plan.billing_period).inline-block.text-center.py-2.px-4.w-full.rounded-l-xl.rounded-t-xl.bg-white.hover_bg-gray-100.font-bold.leading-loose.transition.duration-200 #{plan.cta}
+                .w-full.md_w-1_2.lg_w-1_3.px-4.mb-8.lg_mb-0
+                  .p-8.bg-white.shadow.rounded
+                    h4.mb-2.text-2xl.font-bold.font-heading Beginner
+                    span.text-6xl.font-bold Free
+                    p.mt-3.mb-6.text-gray-500.leading-loose Nullam diam arcu, sodales quis convallis sit amet, sagittis varius ligula.
+                    ul.mb-6.text-gray-500
+                      li.mb-2.flex
+                        svg.mr-2.w-5.h-5.text-green-600(xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='currentColor')
+                          path(fill-rule='evenodd' d='M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z' clip-rule='evenodd')
+                        span Vestibulum viverra
+                      li.mb-2.flex
+                        svg.mr-2.w-5.h-5.text-green-600(xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='currentColor')
+                          path(fill-rule='evenodd' d='M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z' clip-rule='evenodd')
+                        span Morbi mollis metus pretium
+                      li.mb-2.flex
+                        svg.mr-2.w-5.h-5.text-green-600(xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='currentColor')
+                          path(fill-rule='evenodd' d='M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z' clip-rule='evenodd')
+                        span Etiam lectus nunc, commodo
+                      li.mb-2.flex
+                        svg.mr-2.w-5.h-5.text-green-600(xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='currentColor')
+                          path(fill-rule='evenodd' d='M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z' clip-rule='evenodd')
+                        span Ut quam nisl mollis id pretium
+                      li.mb-2.flex
+                        svg.mr-2.w-5.h-5.text-green-600(xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='currentColor')
+                          path(fill-rule='evenodd' d='M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z' clip-rule='evenodd')
+                        span Suspendisse bibendum
+                    a.inline-block.text-center.py-2.px-4.w-full.rounded-l-xl.rounded-t-xl.bg-pink-600.hover_bg-pink-700.text-white.font-bold.leading-loose.transition.duration-200(href='#') Get Started
+                .w-full.md_w-1_2.lg_w-1_3.px-4.mb-8.lg_mb-0
+                  .p-8.bg-purple-600.shadow.rounded
+                    h4.mb-2.text-2xl.font-bold.text-white Intermediate
+                    span.text-6xl.font-bold.text-white $24
+                    span.text-gray-50.text-xs  /month
+                    p.mt-3.mb-6.leading-loose.text-gray-50 Nullam diam arcu, sodales quis convallis sit amet, sagittis varius ligula.
+                    ul.mb-6.text-gray-50
+                      li.mb-2.flex
+                        svg.mr-2.w-5.h-5.text-purple-400(xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='currentColor')
+                          path(fill-rule='evenodd' d='M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z' clip-rule='evenodd')
+                        span Vestibulum viverra
+                      li.mb-2.flex
+                        svg.mr-2.w-5.h-5.text-purple-400(xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='currentColor')
+                          path(fill-rule='evenodd' d='M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z' clip-rule='evenodd')
+                        span Morbi mollis metus pretium
+                      li.mb-2.flex
+                        svg.mr-2.w-5.h-5.text-purple-400(xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='currentColor')
+                          path(fill-rule='evenodd' d='M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z' clip-rule='evenodd')
+                        span Etiam lectus nunc, commodo
+                      li.mb-2.flex
+                        svg.mr-2.w-5.h-5.text-purple-400(xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='currentColor')
+                          path(fill-rule='evenodd' d='M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z' clip-rule='evenodd')
+                        span Ut quam nisl mollis id pretium
+                      li.mb-2.flex
+                        svg.mr-2.w-5.h-5.text-purple-400(xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='currentColor')
+                          path(fill-rule='evenodd' d='M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z' clip-rule='evenodd')
+                        span Suspendisse bibendum
+                    a.inline-block.text-center.py-2.px-4.w-full.rounded-l-xl.rounded-t-xl.bg-white.hover_bg-gray-100.font-bold.leading-loose.transition.duration-200(href='#') Get Started
+                .w-full.lg_w-1_3.px-4
+                  .p-8.bg-white.shadow.rounded
+                    h4.mb-2.text-2xl.font-bold.font-heading Professional
+                    span.text-6xl.font-bold $48
+                    span.text-gray-400.text-xs /month
+                    p.mt-3.mb-6.text-gray-500.leading-loose Nullam diam arcu, sodales quis convallis sit amet, sagittis varius ligula.
+                    ul.mb-6.text-gray-500
+                      li.mb-2.flex
+                        svg.mr-2.w-5.h-5.text-green-400(xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='currentColor')
+                          path(fill-rule='evenodd' d='M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z' clip-rule='evenodd')
+                        span Vestibulum viverra
+                      li.mb-2.flex
+                        svg.mr-2.w-5.h-5.text-green-400(xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='currentColor')
+                          path(fill-rule='evenodd' d='M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z' clip-rule='evenodd')
+                        span Morbi mollis metus pretium
+                      li.mb-2.flex
+                        svg.mr-2.w-5.h-5.text-green-400(xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='currentColor')
+                          path(fill-rule='evenodd' d='M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z' clip-rule='evenodd')
+                        span Etiam lectus nunc, commodo
+                      li.mb-2.flex
+                        svg.mr-2.w-5.h-5.text-green-400(xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='currentColor')
+                          path(fill-rule='evenodd' d='M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z' clip-rule='evenodd')
+                        span Ut quam nisl mollis id pretium
+                      li.mb-2.flex
+                        svg.mr-2.w-5.h-5.text-green-400(xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='currentColor')
+                          path(fill-rule='evenodd' d='M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z' clip-rule='evenodd')
+                        span Suspendisse bibendum
+                    a.inline-block.text-center.py-2.px-4.w-full.rounded-l-xl.rounded-t-xl.bg-pink-600.hover_bg-pink-700.text-white.font-bold.leading-loose.transition.duration-200(href='#') Get Started
+        .skew.skew-bottom.mr-for-radius
+          svg.h-8.md_h-12.lg_h-20.w-full.text-gray-50(viewBox='0 0 10 10' preserveAspectRatio='none')
+            polygon(fill='currentColor' points='0 0 10 0 0 10')
+        .skew.skew-bottom.ml-for-radius
+          svg.h-8.md_h-12.lg_h-20.w-full.text-gray-50(viewBox='0 0 10 10' preserveAspectRatio='none')
+            polygon(fill='currentColor' points='0 0 10 0 10 10')
+      include common/footer.pug
+      +footer()
+      script(src="https://code.jquery.com/jquery-3.3.1.min.js"  crossorigin="anonymous")
+      script(src=asset('marketing/js/pricing.js'))
