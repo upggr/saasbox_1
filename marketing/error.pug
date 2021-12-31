@@ -13,13 +13,13 @@ html(lang='en')
         .skew.skew-top.ml-for-radius
           svg.h-8.md_h-12.lg_h-20.w-full.text-gray-900(viewBox='0 0 10 10' preserveAspectRatio='none')
             polygon(fill='currentColor' points='0 10 10 0 10 10')
-        .py-20.bg-gray-900.radius-for-skewed
+        .py-20.bg-gray-50.radius-for-skewed
           .container.mx-auto.px-4
             img.mx-auto(src=asset('marketing/atis-assets/illustrations/pablo.png') alt)
             if (error)
               .text-center
                 span.mb-6.text-4xl.text-purple-600.font-bold #{error.status}
-                h3.mb-2.text-white.text-4xl.font-bold #{error.message}
+                h3.mb-2.text-gray-900.text-4xl.font-bold #{error.message}
                 p.mb-8.text-gray-500 #{error.stack}
                 div
                   a.w-full.lg_w-auto.mb-2.lg_mb-0.lg_mr-4.inline-block.py-2.px-6.rounded-l-xl.rounded-t-xl.font-bold.leading-loose.text-white.bg-purple-600.hover_bg-purple-700(href='#') Go back to Homepage
@@ -27,11 +27,11 @@ html(lang='en')
             else
               .text-center
                 span.mb-6.text-4xl.text-purple-600.font-bold Whoops!
-                h3.mb-2.text-white.text-4xl.font-bold Something went wrong!
+                h3.mb-2.text-gray-900.text-4xl.font-bold Something went wrong!
                 p.mb-8.text-gray-500 Sorry, but we are unable to open this page
                 div
-                  a.w-full.lg_w-auto.mb-2.lg_mb-0.lg_mr-4.inline-block.py-2.px-6.rounded-l-xl.rounded-t-xl.font-bold.leading-loose.text-white.bg-purple-600.hover_bg-purple-700(href='#') Go back to Homepage
-                  a.w-full.lg_w-auto.inline-block.py-2.px-6.rounded-l-xl.rounded-t-xl.font-bold.leading-loose.bg-white.hover_bg-gray-50.text-gray-900(href='#') Try Again
+                  a.w-full.lg_w-auto.mb-2.lg_mb-0.lg_mr-4.inline-block.py-2.px-6.rounded-l-xl.rounded-t-xl.font-bold.leading-loose.text-white.bg-purple-600.hover_bg-purple-700(href='/') Go back to Homepage
+                  a.w-full.lg_w-auto.inline-block.py-2.px-6.rounded-l-xl.rounded-t-xl.font-bold.leading-loose.bg-white.hover_bg-gray-50.text-gray-900(href='/') Try Again
         .skew.skew-bottom.mr-for-radius
           svg.h-8.md_h-12.lg_h-20.w-full.text-gray-900(viewBox='0 0 10 10' preserveAspectRatio='none')
             polygon(fill='currentColor' points='0 0 10 0 0 10')
