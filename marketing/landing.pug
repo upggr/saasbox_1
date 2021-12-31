@@ -6,6 +6,26 @@ html(lang='en')
     div
       include common/navbar.pug
       +navbar()
+      .bg-gray-50.pt-20.pb-20.radius-for-skewed
+        .container.mx-auto.px-4
+          .flex.flex-wrap.-mx-4
+            .w-full.lg_w-1_2.px-4.mb-12.md_mb-20.lg_mb-0.flex.items-center
+              .w-full.text-center.lg_text-left
+                .max-w-md.mx-auto.lg_mx-0
+                  h2.mb-3.text-4xl.lg_text-5xl.font-bold.font-heading
+                    span Build & Launch without
+                    |  
+                    span.text-purple-600 problems
+                .max-w-sm.mx-auto.lg_mx-0
+                  p.mb-6.text-gray-400.leading-loose Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque efficitur nisl sodales egestas lobortis.
+                  div
+                    a.inline-block.mb-3.lg_mb-0.lg_mr-3.w-full.lg_w-auto.py-2.px-6.leading-loose.bg-purple-600.hover_bg-purple-700.text-white.font-semibold.rounded-l-xl.rounded-t-xl.transition.duration-200(href='#') Get Started
+                    a.inline-block.w-full.lg_w-auto.py-2.px-6.leading-loose.font-semibold.bg-white.hover_bg-gray-50.rounded-l-xl.rounded-t-xl.transition.duration-200(href='#') How it works
+            .w-full.lg_w-1_2.px-4.flex.items-center.justify-center
+              img(src=asset('marketing/atis-assets/illustrations/men-on-chair-light.png') alt)
+        .mr-for-radius
+          svg.h-8.md_h-12.lg_h-20.w-full.text-gray-50(viewBox='0 0 10 10' preserveAspectRatio='none')
+            polygon(fill='currentColor' points='0 0 10 0 0 10')
       section
         .skew.skew-top.mr-for-radius
           svg.h-8.md_h-12.lg_h-20.w-full.text-gray-50(viewBox='0 0 10 10' preserveAspectRatio='none')
