@@ -1,5 +1,5 @@
 {
-    "description": "Atis Light. A simple, high quality theme built using shuffle.dev. Includes marketing pages a SaaS dashboard / user portal area. Pay a one-time fee at https://shuffle.dev to get licensed access to sources.",
+    "description": "SaaS demo with fully functional marketing, login, signup pages, user portal area to insert your nocode application. Build a SaaS with Bubble, Retool, Appsmith, Airtable. Buy a license at https://shuffle.dev to extend/customize the template UI.",
     "assets": "assets",
     "ignore": [".git", ".config.json", "tailwind.config.js", "README.md", "README.txt", "LICENSE", ".gitignore", ".DS_Store"]
 }
