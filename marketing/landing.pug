@@ -18,9 +18,13 @@ html(lang='en')
                     span.text-purple-600 problems
                 .max-w-sm.mx-auto.lg_mx-0
                   p.mb-6.text-gray-400.leading-loose Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque efficitur nisl sodales egestas lobortis.
-                  div
+                  .mb-4.flex.items-center.lg_justify-end
+                    form(action="/" method="POST")
+                      input(type="email" placeholder="hello@example.com").mr-2.py-2.px-8.bg-white.rounded.leading-loose
+                      button(type="submit").inline-block.py-2.px-6.bg-purple-600.hover_bg-purple-700.text-white.font-semibold.leading-loose.rounded-l-xl.rounded-t-xl.transition.duration-200 Get Started
+                  //-div
                     a.inline-block.mb-3.lg_mb-0.lg_mr-3.w-full.lg_w-auto.py-2.px-6.leading-loose.bg-purple-600.hover_bg-purple-700.text-white.font-semibold.rounded-l-xl.rounded-t-xl.transition.duration-200(href='#') Get Started
-                    a.inline-block.w-full.lg_w-auto.py-2.px-6.leading-loose.font-semibold.bg-white.hover_bg-gray-50.rounded-l-xl.rounded-t-xl.transition.duration-200(href='#') How it works
+                    //-a.inline-block.w-full.lg_w-auto.py-2.px-6.leading-loose.font-semibold.bg-white.hover_bg-gray-50.rounded-l-xl.rounded-t-xl.transition.duration-200(href='#') How it works
             .w-full.lg_w-1_2.px-4.flex.items-center.justify-center
               img(src=asset('marketing/atis-assets/illustrations/men-on-chair-light.png') alt)
         .mr-for-radius
