@@ -9,9 +9,12 @@ body.antialiased.bg-body.text-body.font-body
             if (thisApp.name)
               p.text-xl.font-semibold
                 | #{thisApp.name}
-            else
+            else if (thisApp.ImageUrl)
               a.text-xl.font-semibold(href='/app/start')
                 img.h-8(src=thisApp.ImageUrl, alt width='auto')
+            else
+              a(href="/dashboard/app/profile").text-xl.font-semibold.text-blue-600.underline
+                | Edit SaaS Name
           div(id="sidebar-nav").px-4.pb-6
             h3.mb-2.text-xs.uppercase.text-gray-200.font-medium Main
             ul.mb-8.text-sm.font-medium
